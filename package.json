@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node .\\node_modules\\pm2\\bin\\pm2 start index.js",
+    "stop": "node .\\node_modules\\pm2\\bin\\pm2 stop index"
   },
   "author": "Leonardo Perez",
   "license": "ISC",
   "dependencies": {
+    "pm2": "2.4.2",
     "twilio": "^2.11.1",
     "twitter": "1.7.0"
   }
