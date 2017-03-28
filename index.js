@@ -20,11 +20,11 @@ tracker(streamIds, keywords, function (error, tweet) {
     const tweetText = tweet
         .text
         .toLowerCase();
-        
+
     const isValidChannel = tweet
         .user
         .screen_name
-        .toLowerCase() === (screenName.toLowerCase() && screenName1.toLowerCase());
+        .toLowerCase() === screenName.toLowerCase();
 
     const notify = keywords.findIndex(function (kw) {
         return tweetText.indexOf(kw) !== -1;
