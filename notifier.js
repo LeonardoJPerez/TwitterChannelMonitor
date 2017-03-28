@@ -6,7 +6,6 @@ var client = require('twilio')(sid, t);
 
 var bros = require('./numbers').people;
 var sendingNumber = '+17873392453';
-var testNumber = '+15005550006';
 
 module.exports.sendMessage = function (message) {
     bros
