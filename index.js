@@ -9,6 +9,7 @@ var screenName = 'Official_PAX';
 var screenName1 = 'leonardojperez';
 var keywords = process.env.KEYWORDS || ['ticket', 'badge', 'seattle', 'sale', 'west', 'pax', '2017'];
 
+// Heroku Specific server binding.
 var http = require('http');
 http.createServer(function (request, response) {}).listen(process.env.PORT || 5000);
 
