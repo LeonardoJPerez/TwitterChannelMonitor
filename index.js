@@ -7,7 +7,7 @@ const tracker = require('./tracker');
 var streamIds = process.env.STREAM_IDS || '26281970, 140543363';
 var screenName = 'Official_PAX';
 var screenName1 = 'leonardojperez';
-var keywords = process.env.KEYWORDS || ['ticket', 'badge', 'seattle', 'sale'];
+var keywords = process.env.KEYWORDS || ['ticket', 'badge', 'seattle', 'sale', 'west', 'pax', '2017'];
 
 var http = require('http');
 http.createServer(function (request, response) {}).listen(process.env.PORT || 5000);
