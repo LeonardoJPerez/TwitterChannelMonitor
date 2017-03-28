@@ -7,7 +7,6 @@ const tracker = require('./tracker');
 // @leonardojperez ID: 140543363
 var streamIds = process.env.STREAM_IDS || '26281970, 140543363';
 var screenName = 'Official_PAX';
-var screenName1 = 'leonardojperez';
 var keywords = process.env.KEYWORDS || ['ticket', 'badge', 'seattle', 'sale'];
 
 tracker(streamIds, keywords, function (error, tweet) {
@@ -16,7 +15,7 @@ tracker(streamIds, keywords, function (error, tweet) {
     }
 
     const tweetText = tweet.text.toLowerCase();
-    const isValidChannel = tweet.user.screen_name.toLowerCase() === screenName1.toLowerCase();
+    const isValidChannel = tweet.user.screen_name.toLowerCase() === screenName.toLowerCase();
 
     const notify = keywords.findIndex(function (kw) {
         return tweetText.indexOf(kw) !== -1;
