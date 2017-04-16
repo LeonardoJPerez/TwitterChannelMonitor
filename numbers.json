@@ -1,11 +1,11 @@
 {
     "people": [{
-            "name": "Mothra",
-            "number": "+12517093500"
-        },
-        {
             "name": "Leonardo",
             "number": "+14703016070"
+        },
+        {
+            "name": "Mothra",
+            "number": "+12517093500"
         },
         {
             "name": "Earl",
