@@ -4,7 +4,7 @@ const DBContext = require('./services/db/dbContext');
 const ModelFactory = require('./services/db/modelFactory');
 
 module.exports = {
-    loadUserTasks = () => {
+    loadUserTasks: () => {
 
         const Task = ModelFactory.createSchema('Task');
         const baseData = {
