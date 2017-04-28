@@ -1,11 +1,11 @@
 'use strict';
 
-var SENDING_NUMBER = '+17873392453';
-var SID = 'ACfa9294cb5a11c1a81b0ff18b7d4b6d5b';
-var T = '4c21e947cab43ae4885079d8f2756e96';
-var client = require('twilio')(SID, T);
+const SENDING_NUMBER = '+17873392453';
+const SID = 'ACfa9294cb5a11c1a81b0ff18b7d4b6d5b';
+const T = '4c21e947cab43ae4885079d8f2756e96';
+const client = require('twilio')(SID, T);
 
-var bros = require('./numbers').people;
+const bros = require('./numbers').people;
 
 module.exports.sendMessage = function (message) {
     bros.forEach(function (geek) {
