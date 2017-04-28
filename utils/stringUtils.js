@@ -13,7 +13,7 @@ module.exports = {
             .text
             .toLowerCase();
         if (body.indexOf("https://t.co/") === -1) {
-            return tweetText;
+            return body;
         }
 
         // Replace the t.co with actual tweet url.

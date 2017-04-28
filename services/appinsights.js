@@ -11,10 +11,10 @@ module.exports = {
     trackException: (exception) => {
         switch (typeof exception) {
             case 'string':
-                _client.trackException(new Error(exceptionMessage));
+                _client.trackException(new Error(exception.message));
                 break;
             default:
-                _client.trackException(new Error(JSON.parse(exceptionMessage)));
+                _client.trackException(new Error(JSON.parse(exception.message)));
                 break;
         }
 

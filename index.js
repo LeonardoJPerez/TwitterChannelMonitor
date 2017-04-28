@@ -40,24 +40,24 @@ Tracker.track(streamIds, keywords, function (error, tweet) {
         return;
     }
 
-    Appinsights.trackTrace("Sanitizing tweet text");
-
-    const tweetText = stringUtils.sanitizeTweet(tweet);
-
-    Appinsights.trackTrace("Sanitized: \'" + tweetText + "\'");
-    console.log(tweetText);
+    Appinsights.trackTrace("Tweet received: \'" + tweet.text + "\'");
+    console.log(tweet.text);
 
     const isCorrectChannel = tweet
         .user
         .screen_name
         .toLowerCase() === screenName.toLowerCase(); // || tweet.user.screen_name.toLowerCase() === screenName1.toLowerCase();
 
+    const tweetText = tweet
+        .text
+        .toLowerCase();
+
     const notify = keywords.findIndex(function (kw) {
         return tweetText.indexOf(kw) !== -1;
     }) !== -1 && isCorrectChannel;
 
     if (notify) {
-        Notifier.sendMessage(tweetText);
+        Notifier.sendMessage(tweet.text);
         Appinsights.trackTrace("Notification sent!");
     }
 });
