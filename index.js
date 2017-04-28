@@ -18,9 +18,8 @@ var keywords = process.env.KEYWORDS || [
     'regist'
 ];
 
-require('./initDb')();
-
-return;
+// require('./initDb')();
+// return;
 
 Appinsights.trackEvent("ApplicationStart", {
     streamIds,
