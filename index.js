@@ -46,7 +46,8 @@ Tracker.track(streamIds, keywords, function (error, tweet) {
     const isCorrectChannel = tweet
         .user
         .screen_name
-        .toLowerCase() === screenName.toLowerCase(); // || tweet.user.screen_name.toLowerCase() === screenName1.toLowerCase();
+        .toLowerCase() === screenName.toLowerCase()
+        || tweet.user.screen_name.toLowerCase() === screenName1.toLowerCase();
 
     const tweetText = tweet
         .text
