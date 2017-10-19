@@ -1,7 +1,7 @@
 'use strict';
 const appInsights = require("applicationinsights");
 
-const IKEY = "8c05903a-aa5f-4fbb-a007-591bfb0ed778";
+const IKEY = "KEY";
 const _client = appInsights.getClient(IKEY);
 
 module.exports = {
