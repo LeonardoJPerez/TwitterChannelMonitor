@@ -28,7 +28,7 @@ module.exports = {
                 recipients: [
                     {
                         name: 'Leo',
-                        number: '+14703016070'
+                        number: '+'
                     }
                 ]
             })),
@@ -36,7 +36,7 @@ module.exports = {
                 recipients: [
                     {
                         name: 'Mothra',
-                        number: '+12517093500'
+                        number: '+'
                     }
                 ]
             })),
@@ -44,7 +44,7 @@ module.exports = {
                 recipients: [
                     {
                         name: 'Shannon',
-                        number: '+16788008062'
+                        number: '+'
                     }
                 ]
             })),
@@ -52,15 +52,15 @@ module.exports = {
                 recipients: [
                     {
                         name: 'Earl',
-                        number: '+14253955851'
+                        number: '+'
                     }
                 ]
             })),
              new Task(_.assign(baseData, {
                 recipients: [
                     {
-                        name: 'Earl',
-                        number: '+14253955851'
+                        name: 'Joe',
+                        number: '+'
                     }
                 ]
             }))
