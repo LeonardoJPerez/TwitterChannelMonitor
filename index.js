@@ -1,12 +1,11 @@
-const Appinsights = require('./services/appinsights');
+require('dotenv').config();
+
 const Notifier = require('./services/notifier');
 const Tracker = require('./services/tracker');
 const stringUtils = require('./utils/stringUtils');
+const dbContext = require('./services/dbContext');
+const map = require('lodash/map');
 
-// @Official_PAX Twitter ID:    26281970 @leonardojperez ID:          140543363
-var streamIds = process.env.STREAM_IDS || '26281970, 140543363';
-var screenName = 'Official_PAX';
-var screenName1 = 'LeonardoJPerez';
 var keywords = process.env.KEYWORDS || [
     'ticket',
     'badge',
@@ -18,47 +17,46 @@ var keywords = process.env.KEYWORDS || [
     'regist'
 ];
 
-// require('./initDb')();
-// return;
+dbContext.getTwitterAccounts((accounts) => {
+    const streamIds = map(accounts, 'streamID');
 
-Appinsights.trackEvent("ApplicationStart", {
-    streamIds,
-    screenNames: [
-        screenName, screenName1
-    ],
-    keywords
+    Tracker.track(streamIds, keywords, function (error, tweet) {
+        if (error) {
+            console.log(error);
+            return;
+        }
+
+        const tweetText = tweet
+            .text
+            .toLowerCase();
+
+        valid = verifyChannel(tweet, accounts);
+        console.log(valid);
+
+        const notify = keywords.findIndex(function (kw) {
+            return tweetText.indexOf(kw) !== -1;
+        }) !== -1 && valid;
+
+        if (notify) {
+            Notifier.sendMessage(tweet.text);
+        }
+    });
 });
 
-Appinsights.trackTrace("Application started.");
-Appinsights.trackTrace("Tracking...");
-
-Tracker.track(streamIds, keywords, function (error, tweet) {
-    if (error) {
-        console.log(error);
-
-        Appinsights.trackException(error);
-        return;
-    }
-
-    Appinsights.trackTrace("Tweet received: \'" + tweet.text + "\'");
-    console.log(tweet.text);
-
-    const isCorrectChannel = tweet
+function verifyChannel(tweet, accounts) {
+    const screenName = tweet
         .user
         .screen_name
-        .toLowerCase() === screenName.toLowerCase()
-        || tweet.user.screen_name.toLowerCase() === screenName1.toLowerCase();
-
-    const tweetText = tweet
-        .text
         .toLowerCase();
 
-    const notify = keywords.findIndex(function (kw) {
-        return tweetText.indexOf(kw) !== -1;
-    }) !== -1 && isCorrectChannel;
-
-    if (notify) {
-        Notifier.sendMessage(tweet.text);
-        Appinsights.trackTrace("Notification sent!");
+    // Get all the accounts this application is going to monitor and verify that the
+    // tweet came from any of them. This is to avoid retweets from been processed.
+    for (let i = 0; i < accounts.length; i++) {
+        const element = accounts[i];
+        if (screenName == element.ScreenName.toLowerCase()) {
+            return true;
+        }
     }
-});
+
+    return false;
+}
