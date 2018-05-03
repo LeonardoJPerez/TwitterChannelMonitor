@@ -30,16 +30,16 @@ dbContext.getTwitterAccounts((accounts) => {
             .text
             .toLowerCase();
 
-        valid = verifyChannel(tweet, accounts);
-        console.log(valid);
-
+        const valid = verifyChannel(tweet, accounts);
         const notify = keywords.findIndex(function (kw) {
             return tweetText.indexOf(kw) !== -1;
         }) !== -1 && valid;
 
         if (notify) {
-            Notifier.sendMessage(tweet.text);
+            return;
         }
+
+        Notifier.sendMessage(tweet.text);
     });
 });
 
